@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <title>Fly to a location</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.css' rel='stylesheet' />
+</head>
+
+<body>
+    <audio autoplay id="sherlock">
+  <source src="audio/Sherlock%20Holmes%20Movie%20Soundtrack%20-%20Discombobulate.ogg" type="audio/ogg">
+</audio>
+    <div class="overlay">
+        <h1><img id="sf" src="image/font.png" width=50%></h1>
+        <p>
+            Dette Webside er en storytelling over filmen Sherlock Holmes. <br>På websitet vil der blive afspillet små scener fra den originale film.
+        </p>
+        <div class="arrow bounce"></div>
+    </div>
+    <img id="sfp" src="image/font.png" width=50%>
+    <div class="overlayclick"></div>
+    <div id='map'></div>
+
+
+
+    <div class="m1 menu"><img class="menu" src="image/baker.jpg" width="100%;"></div>
+    <div class="m2 menu"><img class="menu" src="image/graveyard.jpg" width="100%;"></div>
+    <div class="m3 menu"><img class="menu" src="image/harbour.jpg" width="100%;"></div>
+    <div class="m4 menu"><img class="menu" src="image/blackwood.jpg" width="100%;"></div>
+    <!-- Key to my realise https://www.youtube.com/watch?v=mlX-MCLdURQ -->
+    <div id="foglayer_01" class="fog">
+        <div class="image01"></div>
+        <div class="image02"></div>
+    </div>
+    <div id="foglayer_02" class="fog">
+        <div class="image01"></div>
+        <div class="image02"></div>
+    </div>
+    <div id="foglayer_03" class="fog">
+        <div class="image01"></div>
+        <div class="image02"></div>
+    </div>
+    <button id='fly1' class="flyer"></button>
+    <button id='fly4' class="flyer"></button>
+    <button id='fly3' class="flyer"></button>
+    <button id='fly2' class="flyer"></button>
+
+
+    <iframe id="vid4" width="520" height="315" src="https://www.youtube.com/embed/0V2Uu5QSzUQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <iframe id="vid3" width="520" height="315" src="https://www.youtube.com/embed/1ulh7uJDsaw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <iframe id="vid2" width="520" height="315" src="https://www.youtube.com/embed/Amo2AWS8BhQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <iframe id="vid1" width="520" height="315" src="https://www.youtube.com/embed/MtLmujqzpzk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</body>
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoibWF0aGFpcyIsImEiOiJjamZqY3ptbXc0N3FwMnFtbXVvYW10aWp6In0.YSF8PTlwyb-E_7SWpchYMw';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mathais/cjfjdtaka7ucq2ro4d67684jg',
+        center: [-0.15499938, 51.520664584],
+        zoom: 11.5,
+        pitch: 45
+    });
+    var marker = new mapboxgl.Marker()
+        .setLngLat([-0.15499938, 51.520664584])
+        .addTo(map);
+    var marker = new mapboxgl.Marker()
+        .setLngLat([-0.01149, 51.50201])
+        .addTo(map);
+    var marker = new mapboxgl.Marker()
+        .setLngLat([-0.1215161806, 51.492914695])
+        .addTo(map);
+    var marker = new mapboxgl.Marker()
+        .setLngLat([-0.186832586, 51.4833314])
+        .addTo(map);
+</script>
+
+<script>
+    document.getElementById('fly1').addEventListener('click', function() {
+        map.flyTo({
+            center: [-0.15499938, 51.520664584],
+            zoom: 15,
+            pitch: 45,
+            speed: 0.2,
+            curve: 1.5,
+        });
+        document.getElementById("vid2").style.visibility = "hidden";
+        document.getElementById("vid3").style.visibility = "hidden";
+        document.getElementById("vid4").style.visibility = "hidden";
+        document.getElementById("vid1").style.visibility = "visible";
+        document.getElementById('vid2').src += '';
+        document.getElementById('vid3').src += '';
+        document.getElementById('vid4').src += '';
+
+    });
+    document.getElementById('fly2').addEventListener('click', function() {
+        map.flyTo({
+            center: [-0.186832586, 51.4833314],
+            zoom: 15,
+            pitch: 45,
+            speed: 0.2,
+            curve: 1.5,
+        });
+        document.getElementById("vid2").style.visibility = "visible";
+        document.getElementById("vid1").style.visibility = "hidden";
+        document.getElementById("vid3").style.visibility = "hidden";
+        document.getElementById("vid4").style.visibility = "hidden";
+        document.getElementById('vid1').src += '';
+        document.getElementById('vid3').src += '';
+        document.getElementById('vid4').src += '';
+    });
+    document.getElementById('fly3').addEventListener('click', function() {
+        map.flyTo({
+            center: [-0.01149, 51.50201],
+            zoom: 15,
+            pitch: 45,
+            speed: 0.2,
+            curve: 1.5,
+        });
+        document.getElementById("vid3").style.visibility = "visible";
+        document.getElementById("vid4").style.visibility = "hidden";
+        document.getElementById("vid2").style.visibility = "hidden";
+        document.getElementById("vid1").style.visibility = "hidden";
+        document.getElementById('vid2').src += '';
+        document.getElementById('vid1').src += '';
+        document.getElementById('vid4').src += '';
+    });
+    document.getElementById('fly4').addEventListener('click', function() {
+        map.flyTo({
+            center: [-0.1215161806, 51.492914695],
+            zoom: 15,
+            pitch: 45,
+            speed: 0.2,
+            curve: 1.5,
+        });
+        document.getElementById("vid4").style.visibility = "visible";
+        document.getElementById("vid3").style.visibility = "hidden";
+        document.getElementById("vid2").style.visibility = "hidden";
+        document.getElementById("vid1").style.visibility = "hidden";
+        document.getElementById('vid2').src += '';
+        document.getElementById('vid3').src += '';
+        document.getElementById('vid1').src += '';
+    });
+    document.getElementById('sfp').addEventListener('click', function() {
+        document.getElementById("vid4").style.visibility = "hidden";
+        document.getElementById("vid3").style.visibility = "hidden";
+        document.getElementById("vid2").style.visibility = "hidden";
+        document.getElementById("vid1").style.visibility = "hidden";
+        document.getElementById('vid2').src += '';
+        document.getElementById('vid3').src += '';
+        document.getElementById('vid1').src += '';
+        document.getElementById('vid4').src += '';
+    });
+</script>
+<script>
+    var audio = document.getElementById("sherlock");
+    audio.volume = 0.5;
+</script>
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $(".overlayclick").click(function() {
+            $(this).hide();
+            $(".overlay").fadeOut(3000);    
+            $('#sfp').delay(2500).animate({
+                top: 20,
+                delay: 20
+            });   
+            
+        });
+    });
+</script>
+</html>
